@@ -1,3 +1,5 @@
+# v1.0.0
+
 from logging import basicConfig, ERROR
 from modulos.requisicoes import obtem_repositorios
 from json import dump
