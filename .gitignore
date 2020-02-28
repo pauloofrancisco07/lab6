@@ -3,3 +3,4 @@
 .idea/
 __pycache__/
 venv/
+token_daniel.py
