@@ -8,8 +8,8 @@ from logging import error
 def obtem_repositorios() -> dict:
     try:
         resposta = post("https://api.github.com/graphql",
-                       headers=cabecalho_api_github,
-                       data=dumps(query_ex1))
+                        headers=cabecalho_api_github,
+                        data=dumps(query_ex1))
 
         resposta.raise_for_status()
 
