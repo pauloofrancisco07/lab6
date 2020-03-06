@@ -3,6 +3,7 @@ from configuracao import cabecalho_api_github
 from requests import post, HTTPError
 from json import dumps
 from logging import error
+from time import sleep
 
 
 def _executa_query(json: dict) -> dict:
@@ -40,7 +41,7 @@ def obtem_repositorios() -> list:
 
     print(resposta)
 
-    while proxima_pagina and qtd_paginas < 10:
+    while proxima_pagina and qtd_paginas < 100:
         qtd_paginas += 1
 
         cursor = resposta["data"]["search"]["pageInfo"]["endCursor"]
@@ -51,9 +52,9 @@ def obtem_repositorios() -> list:
         resposta = _executa_query(dumps(json))
 
         print(resposta)
+
         nodes.extend(resposta['data']['search']['nodes'])
 
         proxima_pagina = resposta["data"]["search"]["pageInfo"]["hasNextPage"]
-
 
     return nodes

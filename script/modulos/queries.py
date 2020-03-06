@@ -2,7 +2,7 @@
 
 query_ex1 = """
         query RepositoriosPopulares {
-            search(query: "stars:>100", type: REPOSITORY, first:25{after}) {
+            search(query: "stars:>100", type: REPOSITORY, first:10{after}) {
               pageInfo {
                 hasNextPage
                 endCursor
