@@ -1,34 +1,37 @@
 
 
-query_ex1 = {
-    'query': """{
-        search(query: "stars: >100", type: REPOSITORY, first: 100) {
-            nodes {
-            ... on Repository {
-                nameWithOwner
-                createdAt
-                updatedAt
-                pullRequests {
+query_ex1 = """
+        query RepositoriosPopulares {
+            search(query: "stars:>100", type: REPOSITORY, first:25{after}) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              nodes {
+                ... on Repository {
+                  nameWithOwner
+                  createdAt
+                  pullRequests (states: MERGED){
                     totalCount
-                }
-                releases {
+                  }
+                  releases {
                     totalCount
-                }
-                primaryLanguage {
+                  }
+                  updatedAt
+                  primaryLanguage {
                     name
-                }
-                closedIssues: issues(states: CLOSED) {
+                  }
+                  closedIssues: issues(states: CLOSED) {
                     totalCount
-                }   
-                totalIssues: issues {
+                  }
+                  totalIssues: issues {
                     totalCount
-                }
-                stargazers {
+                  }
+                  stargazers {
                     totalCount
+                  }
                 }
+              }
             }
-        }
-    }
-}
+        }    
 """
-}

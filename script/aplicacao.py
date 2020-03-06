@@ -1,4 +1,4 @@
-# v1.0.0
+# v2.0.0
 
 from modulos.construidor import escreve_repositorios_csv
 from logging import basicConfig, ERROR

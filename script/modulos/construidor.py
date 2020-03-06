@@ -16,14 +16,12 @@ def constroi_dicionario_node(node: dict) -> dict:
     }
 
 
-def escreve_repositorios_csv(repositorios: dict) -> None:
-
-    nodes = repositorios['data']['search']['nodes']
+def escreve_repositorios_csv(repositorios: list) -> None:
 
     with open('resultados/resultado1.csv', 'w') as resultado_1:
         writer = DictWriter(resultado_1, fieldnames=colunas_node)
         writer.writeheader()
 
-        for node in nodes:
-            node_dict = constroi_dicionario_node(node)
+        for repo in repositorios:
+            node_dict = constroi_dicionario_node(repo)
             writer.writerow(node_dict)
