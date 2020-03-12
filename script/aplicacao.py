@@ -4,10 +4,11 @@ from modulos.construidor import escreve_repositorios_csv
 from logging import basicConfig, ERROR
 from modulos.requisicoes import obtem_repositorios
 
+
 basicConfig(format='%(asctime)s - %(message)s', level=ERROR)
 
 
-def exercicio_01() -> None:
+def script() -> None:
 
     repositorios = obtem_repositorios()
 
@@ -17,4 +18,4 @@ def exercicio_01() -> None:
     escreve_repositorios_csv(repositorios)
 
 
-exercicio_01()
+script()
