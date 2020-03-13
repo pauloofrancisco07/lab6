@@ -13,7 +13,7 @@ repositorios = _obtem_repositorios()
 repositorios.pop(0)
 
 
-def questao_01():
+def _questao_01():
     global repositorios
     qtd_repositorios_maduros = 0
     qtd_repositorios_novos = 0
@@ -44,7 +44,7 @@ def questao_01():
     print("-----------------------------------------------------------------------------------------")
 
 
-def questao_02():
+def _questao_02():
     global repositorios
     pull_requests_totais = 0
 
@@ -78,7 +78,7 @@ def questao_02():
     print("-----------------------------------------------------------------------------------------")
 
 
-def questao_03():
+def _questao_03():
     global repositorios
     releases_totais = 0
     releases = []
@@ -113,4 +113,94 @@ def questao_03():
     print("-----------------------------------------------------------------------------------------")
 
 
-questao_03()
+def _questao_04():
+    global repositorios
+    diferenca_total = 0
+    diferencas = []
+
+    qtd_diferenca_menor = 0
+    qtd_diferenca_maior = 0
+
+    for repositorio in repositorios:
+        data_criacao = datetime.strptime(repositorio[1], "%Y-%m-%dT%H:%M:%SZ")
+        data_atualizacao = datetime.strptime(repositorio[2], "%Y-%m-%dT%H:%M:%SZ")
+
+        diferenca = (data_atualizacao - data_criacao).days
+        diferenca_total += diferenca
+        diferencas.append(diferenca)
+
+    media = diferenca_total/1000
+
+    for diff in diferencas:
+
+        if diff > media:
+            qtd_diferenca_maior += 1
+        else:
+            qtd_diferenca_menor += 1
+
+    print("--------------------------------QUESTÃO 04-----------------------------------------------")
+
+    print(f"Tendo em vista que a quantidade de repositórios populares atualizados com frequência é "
+          f"{qtd_diferenca_maior} e os que não são atualizados com frequência é {qtd_diferenca_menor}")
+
+    if qtd_diferenca_maior > qtd_diferenca_menor:
+        print("Repositórios populares não são atualizados com frequencia!")
+    else:
+        print("Repositórios populares são atualizados com frequencia!")
+
+    print("-----------------------------------------------------------------------------------------")
+
+
+def _questao_05():
+    print("--------------------------------QUESTÃO 05-----------------------------------------------")
+
+    print("Os repositórios populares são escritos nas linguagens populares. Isso se dá pelo fato de "
+          "que a maioria das linguagens primárias nos repositórios são as linguagens mais populares.")
+
+    print("-----------------------------------------------------------------------------------------")
+
+def _questao_06():
+    global repositorios
+
+    qtd_muitas_issues_fechadas = 0
+    qtd_poucas_issues_fechadas = 0
+
+    for repositorio in repositorios:
+        issues_fechadas = int(repositorio[6])
+        issues_totais = int(repositorio[7])
+
+        if issues_totais == 0:
+            pass
+
+        elif issues_fechadas == 0:
+            qtd_muitas_issues_fechadas += 1
+
+        else:
+            porcentagem = (issues_fechadas/issues_totais) * 100
+
+            if porcentagem > 70:
+                qtd_muitas_issues_fechadas += 1
+            else:
+                qtd_poucas_issues_fechadas += 1
+
+    print("--------------------------------QUESTÃO 06-----------------------------------------------")
+
+    print(f"Tendo em mente que uma quantidade alta de issues fechadas seja em torno de 70% e a quantidade de "
+          f"repositórios que tem um percentual maior que esse é: {qtd_muitas_issues_fechadas} "
+          f"e a quantidade dos que tem um percentual menor é: {qtd_poucas_issues_fechadas}")
+
+    if qtd_muitas_issues_fechadas> qtd_poucas_issues_fechadas:
+        print("Repositórios populares tem muitas issues fechadas!")
+    else:
+        print("Repositórios populares não tem muitas issues fechadas!")
+
+    print("-----------------------------------------------------------------------------------------")
+
+
+def questoes():
+    _questao_01()
+    _questao_02()
+    _questao_03()
+    _questao_04()
+    _questao_05()
+    _questao_06()

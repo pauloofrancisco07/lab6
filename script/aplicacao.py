@@ -3,6 +3,7 @@
 from modulos.construidor import escreve_repositorios_csv
 from logging import basicConfig, ERROR
 from modulos.requisicoes import obtem_repositorios
+from modulos.questoes import questoes
 
 
 basicConfig(format='%(asctime)s - %(message)s', level=ERROR)
@@ -19,3 +20,4 @@ def script() -> None:
 
 
 script()
+questoes()
