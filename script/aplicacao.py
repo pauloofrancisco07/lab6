@@ -20,5 +20,5 @@ def script() -> None:
 
 
 script()
-questoes()
+#questoes()
 baixa_repositorios()
