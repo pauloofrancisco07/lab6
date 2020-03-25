@@ -6,5 +6,4 @@ cabecalho_api_github = {
     'Authorization': f"Bearer {token}"
 }
 
-colunas_node = ['nome', 'data_criacao', 'data_atualizacao', 'pull_requests', 'releases', 'linguagem', 'issues_fechadas',
-                'issues_totais', 'stargazes']
+colunas_node = ['nome', 'linguagem', 'stargazes', 'watchers', 'data_criacao', 'forks', 'url']

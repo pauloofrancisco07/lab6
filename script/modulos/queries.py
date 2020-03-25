@@ -1,37 +1,27 @@
 
 
-query_ex1 = """
-        query RepositoriosPopulares {
-            search(query: "stars:>100", type: REPOSITORY, first:10{after}) {
-              pageInfo {
-                hasNextPage
-                endCursor
-              }
-              nodes {
-                ... on Repository {
-                  nameWithOwner
-                  createdAt
-                  pullRequests (states: MERGED){
-                    totalCount
-                  }
-                  releases {
-                    totalCount
-                  }
-                  updatedAt
-                  primaryLanguage {
-                    name
-                  }
-                  closedIssues: issues(states: CLOSED) {
-                    totalCount
-                  }
-                  totalIssues: issues {
-                    totalCount
-                  }
-                  stargazers {
-                    totalCount
-                  }
-                }
-              }
-            }
-        }    
+query = """
+{
+  user(login: "gvanrossum") {
+    repositories(first: 50,isFork:false) {
+      nodes {
+        name
+        primaryLanguage {
+          name
+        }
+        stargazers {
+          totalCount
+        }
+        watchers {
+          totalCount
+        }
+        createdAt
+        forks {
+          totalCount
+        }
+        url
+      }
+    }
+  }
+} 
 """

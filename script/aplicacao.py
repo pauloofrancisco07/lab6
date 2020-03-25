@@ -1,10 +1,10 @@
-# v2.0.0
+# v3.0.0
 
 from modulos.construidor import escreve_repositorios_csv
 from logging import basicConfig, ERROR
 from modulos.requisicoes import obtem_repositorios
 from modulos.questoes import questoes
-
+from modulos.baixador import baixa_repositorios
 
 basicConfig(format='%(asctime)s - %(message)s', level=ERROR)
 
@@ -21,3 +21,4 @@ def script() -> None:
 
 script()
 questoes()
+baixa_repositorios()

@@ -1,4 +1,4 @@
-from modulos.queries import query_ex1
+from modulos.queries import query
 from configuracao import cabecalho_api_github
 from requests import post, HTTPError
 from json import dumps
@@ -23,7 +23,7 @@ def _executa_query(json: dict) -> dict:
 
 def obtem_repositorios() -> list:
 
-    primeira_query = query_ex1.replace("{after}", "")
+    primeira_query = query.replace("{after}", "")
 
     json = {
         'query': primeira_query,
@@ -33,28 +33,9 @@ def obtem_repositorios() -> list:
     resposta = _executa_query(dumps(json))
 
     if not resposta:
+        print('Não foi possível obter os repositórios.')
         exit()
 
-    nodes = resposta["data"]["search"]["nodes"]
-    proxima_pagina = resposta["data"]["search"]["pageInfo"]["hasNextPage"]
-    qtd_paginas = 1
-
-    print(resposta)
-
-    while proxima_pagina and qtd_paginas < 100:
-        qtd_paginas += 1
-
-        cursor = resposta["data"]["search"]["pageInfo"]["endCursor"]
-        proxima_query = query_ex1.replace("{after}", ", after: \"%s\"" % cursor)
-
-
-        json['query'] = proxima_query
-        resposta = _executa_query(dumps(json))
-
-        print(resposta)
-
-        nodes.extend(resposta['data']['search']['nodes'])
-
-        proxima_pagina = resposta["data"]["search"]["pageInfo"]["hasNextPage"]
+    nodes = resposta["data"]["user"]["repositories"]["nodes"]
 
     return nodes

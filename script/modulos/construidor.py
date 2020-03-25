@@ -4,15 +4,13 @@ from configuracao import colunas_node
 def constroi_dicionario_node(node: dict) -> dict:
 
     return {
-        'nome': node['nameWithOwner'],
-        'data_criacao': node['createdAt'],
-        'data_atualizacao': node['updatedAt'],
-        'pull_requests': node['pullRequests']['totalCount'],
-        'releases': node['releases']['totalCount'],
+        'nome': node['name'],
         'linguagem': node['primaryLanguage']['name'] if node['primaryLanguage'] else '',
-        'issues_fechadas': node['closedIssues']['totalCount'],
-        'issues_totais': node['totalIssues']['totalCount'],
-        'stargazes': node['stargazers']['totalCount']
+        'stargazes': node['stargazers']['totalCount'],
+        'watchers': node['watchers']['totalCount'],
+        'data_criacao': node['createdAt'],
+        'forks': node['forks']['totalCount'],
+        'url': node['url']
     }
 
 

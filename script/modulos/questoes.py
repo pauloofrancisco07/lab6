@@ -3,7 +3,7 @@ from datetime import datetime
 from csv import reader
 
 def _obtem_repositorios():
-    with open('../resultados/resultado1.csv') as repositorios:
+    with open('./resultados/resultado1.csv') as repositorios:
         leitor = list(reader(repositorios))
 
     return leitor
